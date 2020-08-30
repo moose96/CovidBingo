@@ -1,0 +1,32 @@
+.bingo__element {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  position: relative;
+
+  input {
+    font-size: 1.5rem;
+    width: 100%;
+    text-align: center;
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      appearance: none;
+    };
+
+    &.stroke {
+      color: red;
+    }
+  }
+
+  button {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}

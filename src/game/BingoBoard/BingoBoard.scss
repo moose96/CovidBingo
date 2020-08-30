@@ -1,0 +1,5 @@
+.bingo__board {
+  display: grid;
+  grid-template-columns: repeat(10, 5rem);
+  grid-template-rows: repeat(10, 5rem);
+}
