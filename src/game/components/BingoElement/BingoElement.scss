@@ -24,6 +24,12 @@
     left: 0;
     top: 0;
     opacity: 0;
+    padding: 0;
+    background-color: rgba(0, 0, 0, 0);
+    font-size: 1rem;
+    cursor: pointer;
+    border: none;
+    text-align: center;
 
     &:hover {
       opacity: 1;

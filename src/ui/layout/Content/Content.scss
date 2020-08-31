@@ -2,6 +2,9 @@ content {
   display: flex;
   align-items: center;
   flex-direction: column;
+  background-color: rgb(255, 255, 246);
+  padding: 1rem 0 2rem 0;
+
 
   .toolbar {
     width: calc(10 * 5rem);

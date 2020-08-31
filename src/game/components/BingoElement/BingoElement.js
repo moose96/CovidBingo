@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import './BingoElement.scss';
+import '../../../styles/fontello.scss';
 
 function BingoElement({ index, value, onChange, state, onStateChange }) {
   const handleChange = event => {
@@ -29,7 +30,9 @@ function BingoElement({ index, value, onChange, state, onStateChange }) {
         onChange={handleChange}
         onBlur={handleBlur} />
       {value !== 0 && state < 2 &&
-        <button onClick={handleClick}>x</button>}
+        <button onClick={handleClick}>
+          <span className="icon icon-cancel" />
+        </button>}
     </div>
   );
 }
