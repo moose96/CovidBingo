@@ -9,16 +9,16 @@ class BingoBoard extends React.Component {
     super(props);
 
     let _values = [];
-    let _strokes = [];
+    let _states = [];
 
     for (let i = 0; i < props.size ** 2; i++) {
       _values.push(0);
-      _strokes.push(false);
+      _states.push(0);
     }
 
     this.state = {
       values: _values,
-      strokes: _strokes
+      states: _states
     }
   }
 
@@ -30,16 +30,16 @@ class BingoBoard extends React.Component {
     });
   }
 
-  handleClick = index => {
-    let _strokes = this.state.strokes;
-    _strokes[index] = true;
+  handleStateChange = (index, state) => {
+    let _states = this.state.states;
+    _states[index] = state;
     this.setState({
-      strokes: _strokes
+      states: _states
     })
   }
 
   render() {
-    const { values, strokes } = this.state;
+    const { values, states } = this.state;
     // const { size } = this.props;
     return (
       <div className="bingo__board">
@@ -49,8 +49,8 @@ class BingoBoard extends React.Component {
           index={index}
           value={element}
           onChange={this.handleChange}
-          stroke={strokes[index]}
-          onClick={this.handleClick} />
+          state={states[index]}
+          onStateChange={this.handleStateChange} />
        )}
      </div>
     )

@@ -6,6 +6,7 @@ import { BingoBoard, CasesList } from './game';
 
 function App() {
   const [todayCase, setTodayCase] = useState({});
+  const [otherCases, setOtherCases] = useState([]);
 
   useEffect(() => {
     fetch('https://api.covid19api.com/summary')
@@ -13,15 +14,38 @@ function App() {
       .then(data => {
         const poland = data.Countries.find(element => element.Country === 'Poland');
 
-        setTodayCase(poland);
+        setTodayCase({
+          date: new Date(poland.Date),
+          cases: poland.NewConfirmed
+        });
       })
       .catch(err => console.log(err));
+    fetch('https://api.covid19api.com/country/poland/status/confirmed')
+      .then(response => response.json())
+      .then(data => {
+        const cases = data.reverse().map((element, index) => {
+          let nextCases = 0;
+
+          if (data[index + 1]) {
+            nextCases = data[index + 1].Cases;
+          }
+
+          return {
+            date: new Date(element.Date),
+            cases: element.Cases - nextCases
+          }
+        });
+
+        // const dailyCases = cases.map()
+
+        setOtherCases(cases);
+      })
   }, []);
 
   return (
     <div className="App">
       <Header>
-        <CasesList today={todayCase} />
+        <CasesList data={[todayCase, ...otherCases]} />
       </Header>
       <Content>
         <BingoBoard size={10} />

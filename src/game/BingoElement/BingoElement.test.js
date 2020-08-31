@@ -10,7 +10,7 @@ describe('test BingoElement', () => {
     const wrapper = mount(<BingoElement index={3} value="13" onChange={handleChange} />);
     const input = wrapper.find('input');
 
-    expect(input.prop('index')).toBe(3);
+    expect(wrapper.prop('index')).toBe(3);
     expect(input.prop('value')).toBe('13');
   });
 
