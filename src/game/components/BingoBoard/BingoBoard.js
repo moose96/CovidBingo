@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
+import withContainer from '../../containers/BingoBoardContainer';
 import BingoElement from '../BingoElement';
 import "./BingoBoard.scss";
 
@@ -10,36 +11,44 @@ class BingoBoard extends React.Component {
 
     let _values = [];
     let _states = [];
+    const arraySize = props.size ** 2;
 
-    for (let i = 0; i < props.size ** 2; i++) {
-      _values.push(0);
-      _states.push(0);
-    }
+    if (props.values.length !== arraySize && props.states.length !== arraySize) {
+      for (let i = 0; i < arraySize; i++) {
+        _values.push(0);
+        _states.push(0);
+      }
 
-    this.state = {
-      values: _values,
-      states: _states
+      // this.state = {
+      //   values: _values,
+      //   states: _states
+      // }
+      props.setValues(_values);
+      props.setStates(_states);
     }
   }
 
   handleChange = (index, value) => {
-    let _values = this.state.values;
+    let _values = [...this.props.values];
     _values[index] = value;
-    this.setState({
-      values: _values
-    });
+    // this.setState({
+    //   values: _values
+    // });
+    this.props.setValues(_values);
   }
 
   handleStateChange = (index, state) => {
-    let _states = this.state.states;
+    let _states = [...this.props.states];
     _states[index] = state;
-    this.setState({
-      states: _states
-    })
+    // this.setState({
+    //   states: _states
+    // })
+    this.props.setStates(_states);
   }
 
   render() {
-    const { values, states } = this.state;
+    // const { values, states } = this.state;
+    const { values, states } = this.props;
     // const { size } = this.props;
     return (
       <div className="bingo__board">
@@ -53,7 +62,7 @@ class BingoBoard extends React.Component {
           onStateChange={this.handleStateChange} />
        )}
      </div>
-    )
+    );
   }
 }
 
@@ -106,4 +115,4 @@ BingoBoard.propTypes = {
   size: PropTypes.number.isRequired
 }
 
-export default BingoBoard;
+export default withContainer(BingoBoard);

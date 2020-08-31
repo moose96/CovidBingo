@@ -15,7 +15,7 @@ function BingoElement({ index, value, onChange, state, onStateChange }) {
   }
 
   const handleBlur = () => {
-    if (value !== 0) {
+    if (value !== 0 && state < 2) {
       onStateChange(index, 1);
     }
   }

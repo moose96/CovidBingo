@@ -1,6 +1,6 @@
-import BingoElement from './BingoElement';
-import BingoBoard from './BingoBoard';
-import CasesList from './CasesList';
+import BingoElement from './components/BingoElement';
+import BingoBoard from './components/BingoBoard';
+import CasesList from './components/CasesList';
 
 export {
   BingoElement,
