@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 import './App.scss';
 
 import { Header, Content, Footer} from './ui/layout';
 import { BingoBoard, CasesList } from './game';
+import { reset } from './game/containers/BingoBoardContainer/redux';
 
-function App() {
+function App({ resetBoard }) {
   const [todayCase, setTodayCase] = useState({});
   const [otherCases, setOtherCases] = useState([]);
 
@@ -48,6 +50,9 @@ function App() {
         <CasesList data={[todayCase, ...otherCases]} />
       </Header>
       <Content>
+        <div className="toolbar">
+          <p onClick={() => resetBoard()}>Wyczyść</p>
+        </div>
         <BingoBoard size={10} />
       </Content>
       <Footer />
@@ -55,4 +60,8 @@ function App() {
   );
 }
 
-export default App;
+const mapDispatchToProps = dispatch => ({
+  resetBoard: () => dispatch(reset())
+})
+
+export default connect(null, mapDispatchToProps)(App);

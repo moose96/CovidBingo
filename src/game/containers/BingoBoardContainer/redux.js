@@ -1,5 +1,6 @@
 const BINGO_SET_VALUES = 'bingo/BINGO_SET_VALUES';
 const BINGO_SET_STATES = 'bingo/BINGO_SET_STATES';
+const BINGO_RESET = 'bingo/BINGO_RESET';
 // const BINGO_SET_VALUE = 'bingo/BINGO_SET_VALUE';
 // const BINGO_SET_STATE = 'bingo/BINGO_SET_STATE';
 // const BINGO_STATE_FREE = 0;
@@ -27,9 +28,9 @@ export function setStates(states) {
   }
 }
 
-export function setTest() {
+export function reset() {
   return {
-    type: 'bingo/test'
+    type: BINGO_RESET
   }
 }
 
@@ -45,6 +46,8 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         states: action.states
       }
+    case BINGO_RESET:
+      return INITIAL_STATE;
     default:
       return state;
   }

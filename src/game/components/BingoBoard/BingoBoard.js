@@ -9,11 +9,15 @@ class BingoBoard extends React.Component {
   constructor(props) {
     super(props);
 
+    this.initBoard();
+  }
+
+  initBoard() {
     let _values = [];
     let _states = [];
-    const arraySize = props.size ** 2;
+    const arraySize = this.props.size ** 2;
 
-    if (props.values.length !== arraySize && props.states.length !== arraySize) {
+    if (this.props.values.length !== arraySize && this.props.states.length !== arraySize) {
       for (let i = 0; i < arraySize; i++) {
         _values.push(0);
         _states.push(0);
@@ -23,8 +27,8 @@ class BingoBoard extends React.Component {
       //   values: _values,
       //   states: _states
       // }
-      props.setValues(_values);
-      props.setStates(_states);
+      this.props.setValues(_values);
+      this.props.setStates(_states);
     }
   }
 
@@ -44,6 +48,10 @@ class BingoBoard extends React.Component {
     //   states: _states
     // })
     this.props.setStates(_states);
+  }
+
+  componentDidUpdate() {
+    this.initBoard();
   }
 
   render() {
