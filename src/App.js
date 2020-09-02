@@ -9,6 +9,7 @@ import { reset } from './game/containers/BingoBoardContainer/redux';
 function App({ resetBoard }) {
   const [todayCase, setTodayCase] = useState({});
   const [otherCases, setOtherCases] = useState([]);
+  const [_dev_width, set_dev_width] = useState(0);
 
   useEffect(() => {
     fetch('https://api.covid19api.com/summary')
@@ -44,6 +45,13 @@ function App({ resetBoard }) {
       })
   }, []);
 
+  useEffect(() => {
+    set_dev_width(window.innerWidth);
+    window.addEventListener('resize', () => set_dev_width(window.innerWidth));
+
+    return () => window.removeEventListener('resize');
+  }, []);
+
   return (
     <div className="App">
       <Header>
@@ -51,6 +59,7 @@ function App({ resetBoard }) {
       </Header>
       <Content>
         <div className="toolbar">
+          <p style={{'margin-right': '1rem'}}>_dev: width: {_dev_width}</p>
           <p onClick={() => resetBoard()}>Wyczyść</p>
         </div>
         <BingoBoard size={10} />
