@@ -1,2 +1,10 @@
 .App {
+  a, a:visited {
+    text-decoration: none;
+    color: gray;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
 }

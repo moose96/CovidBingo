@@ -5,18 +5,32 @@ import CaseElement from '../CaseElement';
 import './CasesList.scss';
 
 function CasesList({ data }) {
+  const labels = ['DZISIAJ', 'WCZORAJ'];
+  let date;
+
+  if (data[0]) {
+    date = new Date(data[0].updated);
+  }
+
+  const updated = date && date.toLocaleString();
+
   return (
     <div className="cases-list">
-      <CaseElement title="TODAY" value={data[0] && data[0].cases} />
-      <CaseElement title="YESTERDAY" value={data[1] && data[1].cases} />
+      <div className="cases-list__data">
+        {data.map((element, index) =>
+          <CaseElement key={`case-element-${index}`} title={labels[index]} value={element.todayCases} />)}
+          <a className="more" href="https://covid19.healthdata.org/poland">Więcej...</a>
+      </div>
+      <p className="updated">Zaktualizowano: {updated}
+      </p>
     </div>
   )
 }
 
 CasesList.propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape({
-    cases: PropTypes.number,
-    date: PropTypes.instanceOf(Date)
+    todayCases: PropTypes.number,
+    updated: PropTypes.number
   })).isRequired,
 }
 

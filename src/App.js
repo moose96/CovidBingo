@@ -6,60 +6,38 @@ import { Header, Content, Footer} from './ui/layout';
 import { BingoBoard, CasesList } from './game';
 import { reset } from './game/containers/BingoBoardContainer/redux';
 
+const API_URL = 'https://corona.lmao.ninja/v2/countries';
+
 function App({ resetBoard }) {
-  const [todayCase, setTodayCase] = useState({});
-  const [otherCases, setOtherCases] = useState([]);
-  const [_dev_width, set_dev_width] = useState(0);
+  const [cases, setCases] = useState([]);
+
+  const fetchData = async () => {
+    const responses = [
+      await fetch(`${API_URL}/poland?query&strict=true`),
+      await fetch(`${API_URL}/poland?query&strict=true&yesterday=true`)
+    ];
+
+    const jsons = responses.map(async (response) => await response.json());
+    const data = await Promise.all(jsons);
+
+    return data;
+  }
 
   useEffect(() => {
-    fetch('https://api.covid19api.com/summary')
-      .then(response => response.json())
+    fetchData()
       .then(data => {
-        const poland = data.Countries.find(element => element.Country === 'Poland');
-
-        setTodayCase({
-          date: new Date(poland.Date),
-          cases: poland.NewConfirmed
-        });
+        setCases(data);
       })
       .catch(err => console.log(err));
-    fetch('https://api.covid19api.com/country/poland/status/confirmed')
-      .then(response => response.json())
-      .then(data => {
-        const cases = data.reverse().map((element, index) => {
-          let nextCases = 0;
-
-          if (data[index + 1]) {
-            nextCases = data[index + 1].Cases;
-          }
-
-          return {
-            date: new Date(element.Date),
-            cases: element.Cases - nextCases
-          }
-        });
-
-        // const dailyCases = cases.map()
-
-        setOtherCases(cases);
-      })
-  }, []);
-
-  useEffect(() => {
-    set_dev_width(window.innerWidth);
-    window.addEventListener('resize', () => set_dev_width(window.innerWidth));
-
-    return () => window.removeEventListener('resize');
   }, []);
 
   return (
     <div className="App">
       <Header>
-        <CasesList data={[todayCase, ...otherCases]} />
+        <CasesList data={cases} />
       </Header>
       <Content>
         <div className="toolbar">
-          <p style={{'margin-right': '1rem'}}>_dev: width: {_dev_width}</p>
           <p onClick={() => resetBoard()}>Wyczyść</p>
         </div>
         <BingoBoard size={10} />
