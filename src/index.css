@@ -39,3 +39,15 @@ code {
     font-size: 8px;
   }
 }
+
+@media screen and (max-width: 420px) {
+  html {
+    font-size: 6px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  html {
+    font-size: 4px;
+  }
+}
