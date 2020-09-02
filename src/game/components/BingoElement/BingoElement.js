@@ -4,10 +4,16 @@ import PropTypes from 'prop-types';
 import './BingoElement.scss';
 import '../../../styles/fontello.scss';
 
-function BingoElement({ index, value, onChange, state, onStateChange }) {
+function BingoElement({ style, index, value, onChange, state, onStateChange }) {
   const handleChange = event => {
     if (state === 0) {
-      onChange(index, event.target.value);
+      let value = event.target.value;
+
+      if (value === '') {
+        value = 0;
+      }
+
+      onChange(index, value);
     }
   }
 
@@ -16,7 +22,7 @@ function BingoElement({ index, value, onChange, state, onStateChange }) {
   }
 
   const handleBlur = () => {
-    if (value !== 0 && state < 2) {
+    if (value !== 0 && value !== '' && state < 2) {
       onStateChange(index, 1);
     }
   }
@@ -25,13 +31,15 @@ function BingoElement({ index, value, onChange, state, onStateChange }) {
     <div className="bingo__element">
       <input
         className={`${state === 2 && 'stroke'}`}
+        style={style}
         type="number"
         value={value !== 0 ? value : ''}
         onChange={handleChange}
         onBlur={handleBlur} />
       {value !== 0 && state < 2 &&
         <button onClick={handleClick}>
-          <span className="icon icon-cancel" />
+          {/* <span className="icon icon-cancel" /> */}
+          x
         </button>}
     </div>
   );
@@ -42,6 +50,7 @@ BingoElement.defaultProps = {
 }
 
 BingoElement.propTypes = {
+  style: PropTypes.object,
   index: PropTypes.number.isRequired,
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,

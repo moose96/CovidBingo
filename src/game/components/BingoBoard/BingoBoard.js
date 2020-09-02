@@ -5,6 +5,21 @@ import withContainer from '../../containers/BingoBoardContainer';
 import BingoElement from '../BingoElement';
 import "./BingoBoard.scss";
 
+const styles = {
+  '0': {
+    'borderRadius': '8px 0 0 0'
+  },
+  '9': {
+    'borderRadius': '0 8px 0 0'
+  },
+  '90': {
+    'borderRadius': '0 0 0 8px'
+  },
+  '99': {
+    'borderRadius': '0 0 8px 0'
+  }
+}
+
 class BingoBoard extends React.Component {
   constructor(props) {
     super(props);
@@ -63,6 +78,7 @@ class BingoBoard extends React.Component {
        {values.map((element, index) =>
        <BingoElement
           key={`bingo-element-${index}`}
+          style={styles[index] && styles[index]}
           index={index}
           value={element}
           onChange={this.handleChange}

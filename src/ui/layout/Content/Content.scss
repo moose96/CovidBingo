@@ -11,13 +11,8 @@ content {
     display: flex;
     justify-content: flex-end;
 
-    p {
-      color: gray;
+    a {
       margin: 0 0 1rem 0;
-
-      &:hover {
-        text-decoration: underline;
-      }
     }
   }
 }

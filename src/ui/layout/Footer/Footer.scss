@@ -1,3 +1,10 @@
 footer {
   text-align: center;
+  background-image: linear-gradient(270deg, rgb(243, 151, 30), rgb(243, 202, 21));
+  background-size: 100%;
+  background-clip: text;
+
+  a {
+    color: transparent !important;
+  }
 }

@@ -31,6 +31,11 @@ function App({ resetBoard }) {
       .catch(err => console.log(err));
   }, []);
 
+  const handleClick = event => {
+    resetBoard();
+    event.preventDefault();
+  }
+
   return (
     <div className="App">
       <Header>
@@ -38,7 +43,7 @@ function App({ resetBoard }) {
       </Header>
       <Content>
         <div className="toolbar">
-          <p onClick={() => resetBoard()}>Wyczyść</p>
+          <a href="/" onClick={handleClick}>Wyczyść</a>
         </div>
         <BingoBoard size={10} />
       </Content>

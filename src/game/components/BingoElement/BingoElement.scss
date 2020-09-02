@@ -1,3 +1,11 @@
+
+
+// @font-face {
+//   font-family: "Bingo Bangos";
+//   src: url("../../../assets/fonts/Bingo Bangos.ttf");
+// }
+
+
 .bingo__element {
   display: flex;
   justify-content: center;
@@ -6,8 +14,12 @@
 
   input {
     font-size: 1.5rem;
+    font-family: "Bingo Bangos";
+    letter-spacing: 0.5rem;
     width: 100%;
     text-align: center;
+    color: rgb(73, 73, 219);
+    border: 1px solid rgb(163, 195, 255);
 
     &::-webkit-outer-spin-button,
     &::-webkit-inner-spin-button {
@@ -15,10 +27,12 @@
     };
 
     &.stroke {
-      color: red;
+      text-decoration: line-through;
+      text-decoration-color: red;
     }
 
     &:focus {
+      outline-color: rgb(73, 73, 219);
       &+button {
         opacity: 1;
       }
@@ -31,11 +45,14 @@
     top: 0;
     opacity: 0;
     padding: 0;
+    margin: 0 0 0 .25rem;
     background-color: rgba(0, 0, 0, 0);
-    font-size: 1rem;
+    font-size: 1.25rem;
     cursor: pointer;
     border: none;
     text-align: center;
+    font-family: "Bingo Bangos";
+    color: red;
 
     // &:hover {
     //   opacity: 1;
