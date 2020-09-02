@@ -17,6 +17,12 @@
     &.stroke {
       color: red;
     }
+
+    &:focus {
+      &+button {
+        opacity: 1;
+      }
+    }
   }
 
   button {
@@ -31,7 +37,13 @@
     border: none;
     text-align: center;
 
-    &:hover {
+    // &:hover {
+    //   opacity: 1;
+    // }
+  }
+
+  &:hover {
+    button {
       opacity: 1;
     }
   }
