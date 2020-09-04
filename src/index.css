@@ -16,7 +16,7 @@ code {
     monospace;
 }
 
-@media screen and (max-width: 920px) {
+/* @media screen and (max-width: 920px) {
   html {
     font-size: 14px;
   }
@@ -26,28 +26,28 @@ code {
   html {
     font-size: 12px;
   }
-}
+} */
 
 @media screen and (max-width: 620px) {
   html {
-    font-size: 10px;
+    font-size: 12px;
   }
 }
 
-@media screen and (max-width: 520px) {
+/* @media screen and (max-width: 520px) {
+  html {
+    font-size: 8px;
+  }
+} */
+
+@media screen and (max-width: 420px) {
   html {
     font-size: 8px;
   }
 }
 
-@media screen and (max-width: 420px) {
-  html {
-    font-size: 6px;
-  }
-}
-
-@media screen and (max-width: 320px) {
+/* @media screen and (max-width: 320px) {
   html {
     font-size: 4px;
   }
-}
+} */

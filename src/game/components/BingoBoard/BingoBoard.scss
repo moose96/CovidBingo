@@ -1,7 +1,60 @@
+@import '../../../styles/mixins';
+@import '../../../styles/breakpoints';
+
 .bingo__board {
   display: grid;
-  grid-template-columns: repeat(10, 5rem);
-  grid-template-rows: repeat(10, 5rem);
+  grid-template-columns: repeat(10, 5em);
+  grid-template-rows: repeat(10, 5em);
   border-radius: 8px;
   box-shadow: 0 0 8px #aaa;
 }
+
+@for $i from 1 through 6 {
+  @include max-width(nth($breakpoints, $i)) {
+    .bingo__board {
+      font-size: nth($sizes, $i);
+    }
+  }
+}
+
+// @include max-width(920px) {
+//   .bingo__board {
+//     font-size: 14px;
+//   }
+// }
+
+// @media screen and (max-width: 920px) {
+//   .bingo__board {
+//     font-size: 14px;
+//   }
+// }
+
+// @media screen and (max-width: 760px) {
+//   .bingo__board {
+//     font-size: 12px;
+//   }
+// }
+
+// @media screen and (max-width: 620px) {
+//   .bingo__board {
+//     font-size: 10px;
+//   }
+// }
+
+// @media screen and (max-width: 520px) {
+//   .bingo__board {
+//     font-size: 8px;
+//   }
+// }
+
+// @media screen and (max-width: 420px) {
+//   .bingo__board {
+//     font-size: 6px;
+//   }
+// }
+
+// @media screen and (max-width: 320px) {
+//   .bingo__board {
+//     font-size: 4px;
+//   }
+// }

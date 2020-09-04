@@ -1,3 +1,6 @@
+@import '../../../styles/mixins';
+@import '../../../styles/breakpoints';
+
 content {
   display: flex;
   align-items: center;
@@ -7,12 +10,20 @@ content {
 
 
   .toolbar {
-    width: calc(10 * 5rem);
+    width: calc(10 * 5em);
     display: flex;
     justify-content: flex-end;
 
     a {
-      margin: 0 0 1rem 0;
+      margin: 0 0 1em 0;
+    }
+  }
+}
+
+@for $i from 1 to 6 {
+  @include max-width(nth($breakpoints, $i)) {
+    .toolbar {
+      font-size: nth($sizes, $i);
     }
   }
 }
